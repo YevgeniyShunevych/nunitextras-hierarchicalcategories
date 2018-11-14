@@ -8,7 +8,7 @@ namespace NUnitExtras.HierarchicalCategories.Tests
     [TestFixture]
     public class FeatureTests
     {
-        protected string[] TestCategories =>
+        protected static string[] TestCategories =>
             TestContext.CurrentContext.Test.Properties[PropertyNames.Category].Cast<string>().ToArray();
 
         [Test]
