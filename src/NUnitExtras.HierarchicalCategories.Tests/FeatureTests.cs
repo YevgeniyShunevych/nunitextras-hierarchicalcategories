@@ -13,14 +13,14 @@ namespace NUnitExtras.HierarchicalCategories.Tests
 
         [Test]
         [Feature.Analytics]
-        public void Feature_Analytics()
+        public void Analytics_Test()
         {
             TestCategories.Should().BeEquivalentTo("Analytics");
         }
 
         [Test]
         [Feature.Analytics.AssistedReview]
-        public void Feature_Analytics_AssistedReview()
+        public void Analytics_AssistedReview_Test()
         {
             TestCategories.Should().BeEquivalentTo(
                 "Analytics",
@@ -29,7 +29,7 @@ namespace NUnitExtras.HierarchicalCategories.Tests
 
         [Test]
         [Feature.Analytics.Infrastructure.Agents]
-        public void Feature_Analytics_Infrastructure_Agents()
+        public void Analytics_Infrastructure_Agents_Test()
         {
             TestCategories.Should().BeEquivalentTo(
                 "Analytics",
@@ -39,7 +39,7 @@ namespace NUnitExtras.HierarchicalCategories.Tests
 
         [Test]
         [Feature.Analytics.Infrastructure.Servers]
-        public void Feature_Analytics_Infrastructure_Servers()
+        public void Analytics_Infrastructure_Servers_Test()
         {
             TestCategories.Should().BeEquivalentTo(
                 "Analytics",
@@ -49,7 +49,7 @@ namespace NUnitExtras.HierarchicalCategories.Tests
 
         [Test]
         [Feature.Analytics.Infrastructure.Servers.AnalyticsIndexing]
-        public void Feature_Analytics_Infrastructure_Servers_AnalyticsIndexing()
+        public void Analytics_Infrastructure_Servers_AnalyticsIndexing_Test()
         {
             TestCategories.Should().BeEquivalentTo(
                 "Analytics",
@@ -60,7 +60,7 @@ namespace NUnitExtras.HierarchicalCategories.Tests
 
         [Test]
         [Feature.Analytics.Infrastructure.Servers.StructuredData]
-        public void Feature_Analytics_Infrastructure_Servers_StructuredData()
+        public void Analytics_Infrastructure_Servers_StructuredData_Test()
         {
             TestCategories.Should().BeEquivalentTo(
                 "Analytics",
