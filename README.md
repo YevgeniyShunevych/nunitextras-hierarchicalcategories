@@ -80,7 +80,7 @@ Mark the tests with corresponding attributes:
 ```cs
 [Test]
 [Feature.Analytics.Infrastructure.Agents]
-public void Feature_Analytics_Infrastructure_Agents()
+public void Analytics_Infrastructure_Agents_Test()
 {
     TestCategories.Should().BeEquivalentTo(
         "Analytics",
@@ -90,7 +90,7 @@ public void Feature_Analytics_Infrastructure_Agents()
 
 [Test]
 [Feature.Analytics.Infrastructure.Servers]
-public void Feature_Analytics_Infrastructure_Servers()
+public void Analytics_Infrastructure_Servers_Test()
 {
     TestCategories.Should().BeEquivalentTo(
         "Analytics",
@@ -100,7 +100,7 @@ public void Feature_Analytics_Infrastructure_Servers()
 
 [Test]
 [Feature.Analytics.Infrastructure.Servers.AnalyticsIndexing]
-public void Feature_Analytics_Infrastructure_Servers_AnalyticsIndexing()
+public void Analytics_Infrastructure_Servers_AnalyticsIndexing_Test()
 {
     TestCategories.Should().BeEquivalentTo(
         "Analytics",
@@ -110,9 +110,17 @@ public void Feature_Analytics_Infrastructure_Servers_AnalyticsIndexing()
 }
 ```
 
+#### Tests Grouped by Outcome
+
+![Tests Explorer - Grouped by Outcome](images/test-explorer-groupd-by-outcome.png)
+
+#### Tests Grouped by Traits
+
+![Tests Explorer - Grouped by Traits](images/test-explorer-groupd-by-traits.png)
+
 ### Special Naming
 
-For specific module names that contains special characters that are not allowed in class naming or other name overrides use `HierarchicalCategoryNameAttribute`:
+To set specific module name that contains special characters that are not allowed in class naming or for name override use `HierarchicalCategoryNameAttribute`:
 
 ```cs
 [HierarchicalCategoryName("Installation & Deployment")]
@@ -123,5 +131,5 @@ public class InstallationAndDeployment : HierarchicalCategoryAttribute
 
 ## License
 
-NUnitExtras.HierarchicalCategories is an open source software, licensed under the Apache License 2.0.
+`NUnitExtras.HierarchicalCategories` is an open source software, licensed under the Apache License 2.0.
 See [LICENSE](LICENSE) for details.
