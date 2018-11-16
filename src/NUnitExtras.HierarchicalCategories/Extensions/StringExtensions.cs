@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace NUnit.Extras
@@ -16,14 +15,14 @@ namespace NUnit.Extras
             if (char.IsLetterOrDigit(chars[0]))
                 wordChars.Add(chars[0]);
 
-            Action endWord = () =>
+            void endWord()
             {
                 if (wordChars.Any())
                 {
                     words.Add(new string(wordChars.ToArray()));
                     wordChars.Clear();
                 }
-            };
+            }
 
             for (int i = 1; i < chars.Length; i++)
             {
