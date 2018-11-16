@@ -158,7 +158,7 @@ public class InstallationAndDeployment : HierarchicalCategoryAttribute
 
 ## Contact
 
-If you faced an issue or have a feature request please report it to [Issues](./issues) or just mail to yevgeniy.shunevych@gmail.com.
+If you faced an issue or have a feature request please report it to [Issues](../../issues) or just mail to yevgeniy.shunevych@gmail.com.
 
 ## License
 
