@@ -156,6 +156,10 @@ public class InstallationAndDeployment : HierarchicalCategoryAttribute
 }
 ```
 
+## Contact
+
+If you faced an issue or have a feature request please report it to [Issues](./issues) or just mail to yevgeniy.shunevych@gmail.com.
+
 ## License
 
 `NUnitExtras.HierarchicalCategories` is an open source software, licensed under the Apache License 2.0.
