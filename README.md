@@ -1,5 +1,8 @@
 # NUnitExtras.HierarchicalCategories
 
+[![NuGet](http://img.shields.io/nuget/v/NUnitExtras.HierarchicalCategories.svg?style=flat)](https://www.nuget.org/packages/NUnitExtras.HierarchicalCategories/)
+[![GitHub release](https://img.shields.io/github/release/YevgeniyShunevych/nunitextras-hierarchicalcategories.svg)](https://github.com/YevgeniyShunevych/nunitextras-hierarchicalcategories/releases)
+
 Provides a functionality for hierarchical categorization of NUnit tests with the following way:
 
 ```cs
