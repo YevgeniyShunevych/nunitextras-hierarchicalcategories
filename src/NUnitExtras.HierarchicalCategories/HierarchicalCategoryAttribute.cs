@@ -1,9 +1,11 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using NUnit.Framework.Internal;
 
 namespace NUnit.Extras
 {
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method | AttributeTargets.Assembly, AllowMultiple = true)]
     public class HierarchicalCategoryAttribute : NUnitAttribute, IApplyToTest
     {
         public HierarchicalCategoryAttribute()
@@ -25,7 +27,10 @@ namespace NUnit.Extras
                 : HierarchicalCategoryResolver.ExtractCategories(Name);
 
             foreach (string category in categories)
-                test.Properties.Add(PropertyNames.Category, category);
+            {
+                if (!test.Properties[PropertyNames.Category].Contains(category))
+                    test.Properties.Add(PropertyNames.Category, category);
+            }
         }
     }
 }
