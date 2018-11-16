@@ -3,12 +3,21 @@ using System.Linq;
 
 namespace NUnit.Extras
 {
+    /// <summary>
+    /// Contains functionality to extract hierarchical catregory names.
+    /// </summary>
     public static class HierarchicalCategoryResolver
     {
         public const string CategorySeparator = ".";
 
         public const string WordSeparator = " ";
 
+        /// <summary>
+        /// Extracts the categories.
+        /// </summary>
+        /// <param name="hierarchicalCategoryName">Name of the hierarchical category.</param>
+        /// <returns>An array of categories.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="hierarchicalCategoryName"/> is <see langword="null"/>.</exception>
         public static string[] ExtractCategories(string hierarchicalCategoryName)
         {
             if (hierarchicalCategoryName == null)
@@ -21,10 +30,19 @@ namespace NUnit.Extras
             return parts.Select((x, i) => string.Join(CategorySeparator, parts.Take(i + 1))).ToArray();
         }
 
+        /// <summary>
+        /// Extracts the categories.
+        /// </summary>
+        /// <param name="type">The type inherited from <see cref="HierarchicalCategoryAttribute"/>.</param>
+        /// <returns>An array of categories.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="type"/> is <see langword="null"/>.</exception>
         public static string[] ExtractCategories(Type type)
         {
             if (type == null)
                 throw new ArgumentNullException(nameof(type));
+
+            if (!IsHierarchicalCategoryAttribute(type))
+                return new string[0];
 
             string hierarchicalCategoryName = ExtractHierarchicalCategoryFromType(type);
             return ExtractCategories(hierarchicalCategoryName);
@@ -34,7 +52,7 @@ namespace NUnit.Extras
         {
             string leadingCategory = null;
 
-            if (type.DeclaringType != null && typeof(HierarchicalCategoryAttribute).IsAssignableFrom(type.DeclaringType))
+            if (type.DeclaringType != null && IsHierarchicalCategoryAttribute(type.DeclaringType))
                 leadingCategory = ExtractHierarchicalCategoryFromType(type.DeclaringType);
 
             string name = ResolveNameFromType(type);
@@ -42,6 +60,11 @@ namespace NUnit.Extras
             return leadingCategory != null
                 ? $"{leadingCategory}{CategorySeparator}{name}"
                 : name;
+        }
+
+        private static bool IsHierarchicalCategoryAttribute(Type type)
+        {
+            return typeof(HierarchicalCategoryAttribute).IsAssignableFrom(type);
         }
 
         private static string ResolveNameFromType(Type type)
