@@ -13,7 +13,6 @@
     <PackageProjectUrl>https://github.com/YevgeniyShunevych/nunitextras-hierarchicalcategories</PackageProjectUrl>
     <RepositoryUrl>https://github.com/YevgeniyShunevych/nunitextras-hierarchicalcategories</RepositoryUrl>
     <PackageTags>nunit testing test</PackageTags>
-    <PackageReleaseNotes></PackageReleaseNotes>
     <RepositoryType>git</RepositoryType>
 	<GenerateDocumentationFile>true</GenerateDocumentationFile>
 	<CodeAnalysisRuleSet>..\NUnitExtras.ruleset</CodeAnalysisRuleSet>
