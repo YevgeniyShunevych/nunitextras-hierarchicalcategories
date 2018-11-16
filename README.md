@@ -118,6 +118,33 @@ public void Analytics_Infrastructure_Servers_AnalyticsIndexing_Test()
 
 ![Tests Explorer - Grouped by Traits](images/test-explorer-groupd-by-traits.png)
 
+### Apply to Fixture
+
+You can also apply attributes to fixtures.
+This will apply the category traites to all child tests.
+
+```cs
+[TestFixture]
+[Module.UI.Authentication]
+public class SomeTests
+{
+    // Tests...
+}
+```
+
+### Multiple Categories
+
+It also possible to apply multiple hierarchical categories to tests, fixtures and assemblies.
+
+```cs
+[Test]
+[Module.UI.Authentication.Admin]
+[Module.UI.Products.Editing]
+public void SomeTest()
+{
+}
+```
+
 ### Special Naming
 
 To set specific module name that contains special characters that are not allowed in class naming or for name override use `HierarchicalCategoryNameAttribute`:
