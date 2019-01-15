@@ -2,11 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>net45</TargetFramework>
-    <Version>1.0.0</Version>
+    <Version>1.1.0</Version>
     <Authors>Yevgeniy Shunevych</Authors>
     <Company>Yevgeniy Shunevych</Company>
     <Product>NUnit Extras</Product>
-    <Copyright>© Yevgeniy Shunevych 2018</Copyright>
+    <Copyright>© Yevgeniy Shunevych 2019</Copyright>
 	<CodeAnalysisRuleSet>..\NUnitExtras.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
