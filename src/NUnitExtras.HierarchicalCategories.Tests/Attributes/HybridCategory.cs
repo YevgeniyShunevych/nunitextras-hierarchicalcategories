@@ -3,12 +3,12 @@ using NUnit.Framework.Internal;
 
 namespace NUnitExtras.HierarchicalCategories.Tests
 {
-    [HierarchicalCategorySettings(ApplyTopLevelsToTestProperties = new[] { TopLevelPropertyName }, ApplyAllLevelsToTestProperties = new[] { PropertyNames.Category, AllLevelsPropertyName })]
+    [HierarchicalCategorySettings(ApplyTopLevelToTestProperties = new[] { TopLevelPropertyName }, ApplyEachLevelToTestProperties = new[] { PropertyNames.Category, EachLevelPropertyName })]
     public static class HybridCategory
     {
         public const string TopLevelPropertyName = "HybridProperty";
 
-        public const string AllLevelsPropertyName = "HybridCategory";
+        public const string EachLevelPropertyName = "HybridCategory";
 
         public class Level1 : HierarchicalCategoryAttribute
         {

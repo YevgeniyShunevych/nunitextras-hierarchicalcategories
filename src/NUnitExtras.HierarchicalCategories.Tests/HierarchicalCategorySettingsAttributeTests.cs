@@ -34,7 +34,7 @@ namespace NUnitExtras.HierarchicalCategories.Tests
                 "Level 1.Level 1 1"
             };
 
-            TestProperties[HybridCategory.AllLevelsPropertyName].Should().Equal(expectedValues);
+            TestProperties[HybridCategory.EachLevelPropertyName].Should().Equal(expectedValues);
             TestProperties[PropertyNames.Category].Should().Equal(expectedValues);
         }
 
@@ -50,7 +50,7 @@ namespace NUnitExtras.HierarchicalCategories.Tests
                 "Level 1.Level 1 2"
             };
 
-            TestProperties[HybridCategory.AllLevelsPropertyName].Should().Equal(expectedValues);
+            TestProperties[HybridCategory.EachLevelPropertyName].Should().Equal(expectedValues);
             TestProperties[PropertyNames.Category].Should().Equal(expectedValues);
         }
 

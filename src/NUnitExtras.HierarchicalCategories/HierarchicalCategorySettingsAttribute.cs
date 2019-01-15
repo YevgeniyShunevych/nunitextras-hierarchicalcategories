@@ -22,15 +22,15 @@ namespace NUnit.Extras
         public string WordSeparator { get; set; } = HierarchicalCategoryResolver.DefaultWordSeparator;
 
         /// <summary>
-        /// Gets or sets the names of the test properties to apply all hierarchical levels to, e.g.: "lvl1", "lvl1.1", "lvl1.1.1".
-        /// By default contains <see cref="PropertyNames.Category"/>.
+        /// Gets or sets the names of the test properties to apply each hierarchical level (such as "lvl1", "lvl1.1" and "lvl1.1.1") to.
+        /// By default contains <see cref="PropertyNames.Category"/> (<c>"Category"</c>).
         /// </summary>
-        public string[] ApplyAllLevelsToTestProperties { get; set; } = new[] { PropertyNames.Category };
+        public string[] ApplyEachLevelToTestProperties { get; set; } = new[] { PropertyNames.Category };
 
         /// <summary>
-        /// Gets or sets the names of the test properties to apply only top hierarchical level to, e.g.: "lvl1.1.1".
+        /// Gets or sets the names of the test properties to apply only top hierarchical level (such as "lvl1.1.1") to.
         /// By default is empty.
         /// </summary>
-        public string[] ApplyTopLevelsToTestProperties { get; set; } = new string[0];
+        public string[] ApplyTopLevelToTestProperties { get; set; } = new string[0];
     }
 }

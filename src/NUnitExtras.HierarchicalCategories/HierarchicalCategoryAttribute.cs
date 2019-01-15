@@ -54,11 +54,11 @@ namespace NUnit.Extras
                 ? resolver.ExtractCategories(thisType)
                 : resolver.ExtractCategories(Name);
 
-            if (settings.ApplyAllLevelsToTestProperties != null)
-                test.Properties.AddCrossJoinedRange(settings.ApplyAllLevelsToTestProperties, categories);
+            if (settings.ApplyEachLevelToTestProperties != null)
+                test.Properties.AddCrossJoinedRange(settings.ApplyEachLevelToTestProperties, categories);
 
-            if (settings.ApplyTopLevelsToTestProperties != null)
-                test.Properties.AddCrossJoinedRange(settings.ApplyTopLevelsToTestProperties, categories.Reverse().Take(1));
+            if (settings.ApplyTopLevelToTestProperties != null)
+                test.Properties.AddCrossJoinedRange(settings.ApplyTopLevelToTestProperties, categories.Reverse().Take(1));
         }
     }
 }
