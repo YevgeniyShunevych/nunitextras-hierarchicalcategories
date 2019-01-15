@@ -1,28 +1,23 @@
-﻿using System.Linq;
-using FluentAssertions;
+﻿using FluentAssertions;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
 
 namespace NUnitExtras.HierarchicalCategories.Tests
 {
-    [TestFixture]
-    public class FeatureTests
+    public class FeatureTests : BaseFixture
     {
-        protected static string[] TestCategories =>
-            TestContext.CurrentContext.Test.Properties[PropertyNames.Category].Cast<string>().ToArray();
-
         [Test]
         [Feature.Analytics]
         public void Analytics_Test()
         {
-            TestCategories.Should().BeEquivalentTo("Analytics");
+            TestProperties.Categories.Should().Equal("Analytics");
         }
 
         [Test]
         [Feature.Analytics.AssistedReview]
         public void Analytics_AssistedReview_Test()
         {
-            TestCategories.Should().BeEquivalentTo(
+            TestProperties.Categories.Should().Equal(
                 "Analytics",
                 "Analytics.Assisted Review");
         }
@@ -31,7 +26,7 @@ namespace NUnitExtras.HierarchicalCategories.Tests
         [Feature.Analytics.Infrastructure.Agents]
         public void Analytics_Infrastructure_Agents_Test()
         {
-            TestCategories.Should().BeEquivalentTo(
+            TestProperties.Categories.Should().Equal(
                 "Analytics",
                 "Analytics.Infrastructure",
                 "Analytics.Infrastructure.Agents");
@@ -41,7 +36,7 @@ namespace NUnitExtras.HierarchicalCategories.Tests
         [Feature.Analytics.Infrastructure.Servers]
         public void Analytics_Infrastructure_Servers_Test()
         {
-            TestCategories.Should().BeEquivalentTo(
+            TestProperties.Categories.Should().Equal(
                 "Analytics",
                 "Analytics.Infrastructure",
                 "Analytics.Infrastructure.Servers");
@@ -51,7 +46,7 @@ namespace NUnitExtras.HierarchicalCategories.Tests
         [Feature.Analytics.Infrastructure.Servers.AnalyticsIndexing]
         public void Analytics_Infrastructure_Servers_AnalyticsIndexing_Test()
         {
-            TestCategories.Should().BeEquivalentTo(
+            TestProperties.Categories.Should().Equal(
                 "Analytics",
                 "Analytics.Infrastructure",
                 "Analytics.Infrastructure.Servers",
@@ -62,7 +57,7 @@ namespace NUnitExtras.HierarchicalCategories.Tests
         [Feature.Analytics.Infrastructure.Servers.StructuredData]
         public void Analytics_Infrastructure_Servers_StructuredData_Test()
         {
-            TestCategories.Should().BeEquivalentTo(
+            TestProperties.Categories.Should().Equal(
                 "Analytics",
                 "Analytics.Infrastructure",
                 "Analytics.Infrastructure.Servers",

@@ -69,11 +69,8 @@ namespace NUnit.Extras
 
         private static string ResolveNameFromType(Type type)
         {
-            HierarchicalCategoryNameAttribute nameAttribute = type.
-                GetCustomAttributes(typeof(HierarchicalCategoryNameAttribute), true).
-                FirstOrDefault() as HierarchicalCategoryNameAttribute;
-
-            return nameAttribute?.Name ?? ResolveNameFromTypeName(type.Name);
+            return type.GetAttribute<HierarchicalCategoryNameAttribute>()?.Name
+                ?? ResolveNameFromTypeName(type.Name);
         }
 
         private static string ResolveNameFromTypeName(string typeName)
@@ -83,6 +80,22 @@ namespace NUnit.Extras
                 : typeName;
 
             return string.Join(WordSeparator, name.SplitIntoWords());
+        }
+
+        /// <summary>
+        /// Extracts the hierarchical category settings.
+        /// Finds <see cref="HierarchicalCategorySettingsAttribute"/> in all ascendant types starting from <paramref name="type"/>.
+        /// </summary>
+        /// <param name="type">The type of an attribute.</param>
+        /// <returns>The found instance of <see cref="HierarchicalCategorySettingsAttribute"/> or default if not found.</returns>
+        public static HierarchicalCategorySettingsAttribute ExtractHierarchicalCategorySettings(Type type)
+        {
+            if (type.TryGetAttribute(out HierarchicalCategorySettingsAttribute settingsAttribute))
+                return settingsAttribute;
+            else if (type.DeclaringType != null)
+                return ExtractHierarchicalCategorySettings(type.DeclaringType);
+            else
+                return new HierarchicalCategorySettingsAttribute();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using NUnit.Framework.Internal;
@@ -6,7 +7,7 @@ using NUnit.Framework.Internal;
 namespace NUnit.Extras
 {
     /// <summary>
-    /// Applies multiple hierarchical catregories to a test.
+    /// Applies single or multiple hierarchical catregories to a test.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method | AttributeTargets.Assembly, AllowMultiple = true)]
     public class HierarchicalCategoryAttribute : NUnitAttribute, IApplyToTest
@@ -40,15 +41,18 @@ namespace NUnit.Extras
         /// <param name="test">The test to modify</param>
         public void ApplyToTest(Test test)
         {
+            Type thisType = GetType();
+            HierarchicalCategorySettingsAttribute settings = HierarchicalCategoryResolver.ExtractHierarchicalCategorySettings(thisType);
+
             string[] categories = Name == null
-                ? HierarchicalCategoryResolver.ExtractCategories(GetType())
+                ? HierarchicalCategoryResolver.ExtractCategories(thisType)
                 : HierarchicalCategoryResolver.ExtractCategories(Name);
 
-            foreach (string category in categories)
-            {
-                if (!test.Properties[PropertyNames.Category].Contains(category))
-                    test.Properties.Add(PropertyNames.Category, category);
-            }
+            if (settings.ApplyAllLevelsToTestProperties != null)
+                test.Properties.AddCrossJoinedRange(settings.ApplyAllLevelsToTestProperties, categories);
+
+            if (settings.ApplyTopLevelsToTestProperties != null)
+                test.Properties.AddCrossJoinedRange(settings.ApplyTopLevelsToTestProperties, categories.Reverse().Take(1));
         }
     }
 }
