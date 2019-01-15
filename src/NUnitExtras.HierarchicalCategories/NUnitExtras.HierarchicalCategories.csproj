@@ -9,6 +9,8 @@
     <Product>NUnit Extras</Product>
     <Description>Hierarchical categories for NUnit.
 
+Supports .NET Framework 4.0+ and .NET Core/Standard 2.0+.
+
 NUnitExtras.HierarchicalCategories on GitHub: https://github.com/YevgeniyShunevych/nunitextras-hierarchicalcategories</Description>
     <Copyright>© Yevgeniy Shunevych 2019</Copyright>
     <PackageLicenseUrl>https://raw.githubusercontent.com/YevgeniyShunevych/nunitextras-hierarchicalcategories/master/LICENSE</PackageLicenseUrl>
