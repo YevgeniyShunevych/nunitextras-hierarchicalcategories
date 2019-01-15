@@ -11,7 +11,7 @@ namespace NUnit.Extras
     {
         /// <summary>
         /// Gets or sets the category separator.
-        /// The default value is <c>"."</c>
+        /// The default value is <c>"."</c>.
         /// </summary>
         public string CategorySeparator { get; set; } = HierarchicalCategoryResolver.DefaultCategorySeparator;
 
