@@ -159,6 +159,44 @@ public class InstallationAndDeployment : HierarchicalCategoryAttribute
 }
 ```
 
+### Settings
+
+Use `HierarchicalCategorySettingsAttribute` to change the default settings or attribute applying behavior.
+`HierarchicalCategorySettingsAttribute` provides ability to apply hierarchical categories not only as NUnit categories but also as custom NUnit properties.
+
+#### `HierarchicalCategorySettingsAttribute` Properties
+
+```cs
+public string CategorySeparator { get; set; }
+```
+
+Gets or sets the category separator.
+The default value is `"."`.
+___
+
+```cs
+public string WordSeparator { get; set; }
+```
+
+Gets or sets the category word separator.
+The default value is `" "`.
+___
+
+```cs
+public string[] ApplyEachLevelToTestProperties { get; set; }
+```
+
+Gets or sets the names of the test properties to apply each hierarchical level (such as "lvl1", "lvl1.1" and "lvl1.1.1") to.
+By default contains `PropertyNames.Category` (`"Category"`).
+___
+
+```cs
+public string[] ApplyTopLevelToTestProperties { get; set; }
+```
+
+Gets or sets the names of the test properties to apply only top hierarchical level (such as "lvl1.1.1") to.
+By default is empty.
+
 ## Contact
 
 If you faced an issue or have a feature request please report it to [Issues](../../issues) or just mail to yevgeniy.shunevych@gmail.com.
