@@ -44,9 +44,15 @@ namespace NUnit.Extras
             Type thisType = GetType();
             HierarchicalCategorySettingsAttribute settings = HierarchicalCategoryResolver.ExtractHierarchicalCategorySettings(thisType);
 
+            HierarchicalCategoryResolver resolver = new HierarchicalCategoryResolver
+            {
+                CategorySeparator = settings.CategorySeparator,
+                WordSeparator = settings.WordSeparator
+            };
+
             string[] categories = Name == null
-                ? HierarchicalCategoryResolver.ExtractCategories(thisType)
-                : HierarchicalCategoryResolver.ExtractCategories(Name);
+                ? resolver.ExtractCategories(thisType)
+                : resolver.ExtractCategories(Name);
 
             if (settings.ApplyAllLevelsToTestProperties != null)
                 test.Properties.AddCrossJoinedRange(settings.ApplyAllLevelsToTestProperties, categories);

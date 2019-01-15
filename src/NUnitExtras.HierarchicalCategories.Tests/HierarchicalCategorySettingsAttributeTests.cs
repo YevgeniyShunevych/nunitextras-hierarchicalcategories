@@ -53,5 +53,41 @@ namespace NUnitExtras.HierarchicalCategories.Tests
             TestProperties[HybridCategory.AllLevelsPropertyName].Should().Equal(expectedValues);
             TestProperties[PropertyNames.Category].Should().Equal(expectedValues);
         }
+
+        [Test]
+        [CategoryWithSlashSeparator.Child1.SubChild1]
+        [CategoryWithSlashSeparator.Child2]
+        public void HierarchicalCategorySettingsAttribute_CategorySeparator_Slash()
+        {
+            TestProperties.Categories.Should().Equal(
+                "Category With Slash Separator",
+                "Category With Slash Separator/Child 1",
+                "Category With Slash Separator/Child 1/Sub-child 1",
+                "Category With Slash Separator/Child 2");
+        }
+
+        [Test]
+        [CategoryWithNullWordSeparator.Child1.SubChild1]
+        [CategoryWithNullWordSeparator.Child2]
+        public void HierarchicalCategorySettingsAttribute_WordSeparator_Null()
+        {
+            TestProperties.Categories.Should().Equal(
+                "CategoryWithNullWordSeparator",
+                "CategoryWithNullWordSeparator.Child1",
+                "CategoryWithNullWordSeparator.Child1.Sub-child 1",
+                "CategoryWithNullWordSeparator.Child2");
+        }
+
+        [Test]
+        [CategoryWithDashWordSeparator.Child1.SubChild1]
+        [CategoryWithDashWordSeparator.Child2]
+        public void HierarchicalCategorySettingsAttribute_WordSeparator_Dash()
+        {
+            TestProperties.Categories.Should().Equal(
+                "Category-With-Dash-Word-Separator",
+                "Category-With-Dash-Word-Separator.Child-1",
+                "Category-With-Dash-Word-Separator.Child-1.Sub-child 1",
+                "Category-With-Dash-Word-Separator.Child-2");
+        }
     }
 }

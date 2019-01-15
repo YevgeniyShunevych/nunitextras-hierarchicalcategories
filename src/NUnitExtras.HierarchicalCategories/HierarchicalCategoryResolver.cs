@@ -6,11 +6,29 @@ namespace NUnit.Extras
     /// <summary>
     /// Contains functionality to extract hierarchical catregory names.
     /// </summary>
-    public static class HierarchicalCategoryResolver
+    public class HierarchicalCategoryResolver
     {
-        public const string CategorySeparator = ".";
+        /// <summary>
+        /// The default category separator.
+        /// </summary>
+        public const string DefaultCategorySeparator = ".";
 
-        public const string WordSeparator = " ";
+        /// <summary>
+        /// The default category word separator.
+        /// </summary>
+        public const string DefaultWordSeparator = " ";
+
+        /// <summary>
+        /// Gets or sets the category separator.
+        /// The default value is <c>"."</c>.
+        /// </summary>
+        public string CategorySeparator { get; set; } = DefaultCategorySeparator;
+
+        /// <summary>
+        /// Gets or sets the category word separator.
+        /// The default value is <c>" "</c>.
+        /// </summary>
+        public string WordSeparator { get; set; } = DefaultWordSeparator;
 
         /// <summary>
         /// Extracts the categories.
@@ -18,7 +36,7 @@ namespace NUnit.Extras
         /// <param name="hierarchicalCategoryName">Name of the hierarchical category.</param>
         /// <returns>An array of categories.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="hierarchicalCategoryName"/> is <see langword="null"/>.</exception>
-        public static string[] ExtractCategories(string hierarchicalCategoryName)
+        public string[] ExtractCategories(string hierarchicalCategoryName)
         {
             if (hierarchicalCategoryName == null)
                 throw new ArgumentNullException(nameof(hierarchicalCategoryName));
@@ -36,7 +54,7 @@ namespace NUnit.Extras
         /// <param name="type">The type inherited from <see cref="HierarchicalCategoryAttribute"/>.</param>
         /// <returns>An array of categories.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="type"/> is <see langword="null"/>.</exception>
-        public static string[] ExtractCategories(Type type)
+        public string[] ExtractCategories(Type type)
         {
             if (type == null)
                 throw new ArgumentNullException(nameof(type));
@@ -48,7 +66,7 @@ namespace NUnit.Extras
             return ExtractCategories(hierarchicalCategoryName);
         }
 
-        public static string ExtractHierarchicalCategoryFromType(Type type)
+        public string ExtractHierarchicalCategoryFromType(Type type)
         {
             string leadingCategory = null;
 
@@ -67,13 +85,13 @@ namespace NUnit.Extras
             return typeof(HierarchicalCategoryAttribute).IsAssignableFrom(type);
         }
 
-        private static string ResolveNameFromType(Type type)
+        private string ResolveNameFromType(Type type)
         {
             return type.GetAttribute<HierarchicalCategoryNameAttribute>()?.Name
                 ?? ResolveNameFromTypeName(type.Name);
         }
 
-        private static string ResolveNameFromTypeName(string typeName)
+        private string ResolveNameFromTypeName(string typeName)
         {
             string name = typeName.EndsWith(nameof(Attribute))
                 ? typeName.Substring(0, typeName.Length - nameof(Attribute).Length)
