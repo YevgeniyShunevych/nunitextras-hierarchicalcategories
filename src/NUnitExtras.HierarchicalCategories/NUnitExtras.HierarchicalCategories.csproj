@@ -7,7 +7,9 @@
     <Authors>Yevgeniy Shunevych</Authors>
     <Company>Yevgeniy Shunevych</Company>
     <Product>NUnit Extras</Product>
-    <Description>Hierarchical categories for NUnit</Description>
+    <Description>Hierarchical categories for NUnit.
+
+NUnitExtras.HierarchicalCategories on GitHub: https://github.com/YevgeniyShunevych/nunitextras-hierarchicalcategories</Description>
     <Copyright>© Yevgeniy Shunevych 2019</Copyright>
     <PackageLicenseUrl>https://raw.githubusercontent.com/YevgeniyShunevych/nunitextras-hierarchicalcategories/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/YevgeniyShunevych/nunitextras-hierarchicalcategories</PackageProjectUrl>
@@ -16,6 +18,8 @@
     <RepositoryType>git</RepositoryType>
 	<GenerateDocumentationFile>true</GenerateDocumentationFile>
 	<CodeAnalysisRuleSet>..\NUnitExtras.ruleset</CodeAnalysisRuleSet>
+	<PackageReleaseNotes>1.1.0 - https://github.com/YevgeniyShunevych/nunitextras-hierarchicalcategories/releases/tag/v1.1.0
+1.0.0 - Initial release</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
