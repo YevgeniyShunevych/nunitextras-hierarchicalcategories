@@ -30,7 +30,7 @@ NUnitExtras.HierarchicalCategories on GitHub: https://github.com/YevgeniyShunevy
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="NUnit" Version="3.6.0" />
+    <PackageReference Include="NUnit" Version="3.7.0" />
     <PackageReference Include="SonarAnalyzer.CSharp" Version="7.8.0.7320">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
