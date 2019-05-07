@@ -16,8 +16,10 @@ namespace NUnitExtras.HierarchicalCategories.Tests
             public string[] Categories =>
                 this[PropertyNames.Category];
 
+#pragma warning disable CA1822
             public string[] this[string propertyName] =>
                 TestContext.CurrentContext.Test.Properties[propertyName].ToStringArray();
+#pragma warning restore CA1822
         }
 
         public class FixturePropertiesAdapter
