@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net40;net45;netstandard2.0</TargetFrameworks>
     <RootNamespace>NUnit.Extras</RootNamespace>
-    <Version>1.3.0</Version>
+    <Version>1.4.0</Version>
     <Authors>Yevgeniy Shunevych</Authors>
     <Company>Yevgeniy Shunevych</Company>
     <Product>NUnit Extras</Product>
@@ -20,7 +20,8 @@ NUnitExtras.HierarchicalCategories on GitHub: https://github.com/YevgeniyShunevy
     <RepositoryType>git</RepositoryType>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <CodeAnalysisRuleSet>..\NUnitExtras.ruleset</CodeAnalysisRuleSet>
-    <PackageReleaseNotes>1.3.0 - https://github.com/YevgeniyShunevych/nunitextras-hierarchicalcategories/releases/tag/v1.3.0
+    <PackageReleaseNotes>1.4.0 - https://github.com/YevgeniyShunevych/nunitextras-hierarchicalcategories/releases/tag/v1.4.0
+1.3.0 - https://github.com/YevgeniyShunevych/nunitextras-hierarchicalcategories/releases/tag/v1.3.0
 1.2.0 - https://github.com/YevgeniyShunevych/nunitextras-hierarchicalcategories/releases/tag/v1.2.0
 1.1.0 - https://github.com/YevgeniyShunevych/nunitextras-hierarchicalcategories/releases/tag/v1.1.0
 1.0.0 - Initial release</PackageReleaseNotes>
