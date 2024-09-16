@@ -3,14 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NUnitExtras.HierarchicalCategories", "NUnitExtras.HierarchicalCategories\NUnitExtras.HierarchicalCategories.csproj", "{9B20E80D-963F-4137-BF30-C3D8CF8ECF03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NUnitExtras.HierarchicalCategories", "src\NUnitExtras.HierarchicalCategories\NUnitExtras.HierarchicalCategories.csproj", "{9B20E80D-963F-4137-BF30-C3D8CF8ECF03}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NUnitExtras.HierarchicalCategories.Tests", "NUnitExtras.HierarchicalCategories.Tests\NUnitExtras.HierarchicalCategories.Tests.csproj", "{48702243-6FC2-484C-9307-43ED1FC5DFDE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NUnitExtras.HierarchicalCategories.Tests", "test\NUnitExtras.HierarchicalCategories.Tests\NUnitExtras.HierarchicalCategories.Tests.csproj", "{48702243-6FC2-484C-9307-43ED1FC5DFDE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{47334780-4288-46C3-92B3-1C6CDE5C3A75}"
 	ProjectSection(SolutionItems) = preProject
 		NUnitExtras.ruleset = NUnitExtras.ruleset
-		..\README.md = ..\README.md
+		README.md = README.md
 	EndProjectSection
 EndProject
 Global
