@@ -2,34 +2,33 @@
 using NUnit.Framework.Interfaces;
 using NUnit.Framework.Internal;
 
-namespace NUnitExtras.HierarchicalCategories.Tests
+namespace NUnitExtras.HierarchicalCategories.Tests;
+
+[TestFixture]
+public abstract class BaseFixture
 {
-    [TestFixture]
-    public abstract class BaseFixture
+    protected TestPropertiesAdapter TestProperties { get; } = new TestPropertiesAdapter();
+
+    protected FixturePropertiesAdapter FixtureProperties { get; } = new FixturePropertiesAdapter();
+
+    public class TestPropertiesAdapter
     {
-        protected TestPropertiesAdapter TestProperties { get; } = new TestPropertiesAdapter();
+        public string[] Categories =>
+            this[PropertyNames.Category];
 
-        protected FixturePropertiesAdapter FixtureProperties { get; } = new FixturePropertiesAdapter();
+        public string[] this[string propertyName] =>
+            TestContext.CurrentContext.Test.Properties[propertyName].ToStringArray();
+    }
 
-        public class TestPropertiesAdapter
-        {
-            public string[] Categories =>
-                this[PropertyNames.Category];
+    public class FixturePropertiesAdapter
+    {
+        public string[] Categories =>
+            this[PropertyNames.Category];
 
-            public string[] this[string propertyName] =>
-                TestContext.CurrentContext.Test.Properties[propertyName].ToStringArray();
-        }
+        public string[] this[string propertyName] =>
+            ResolveFixture(TestExecutionContext.CurrentContext.CurrentTest).Properties[propertyName].ToStringArray();
 
-        public class FixturePropertiesAdapter
-        {
-            public string[] Categories =>
-                this[PropertyNames.Category];
-
-            public string[] this[string propertyName] =>
-                ResolveFixture(TestExecutionContext.CurrentContext.CurrentTest).Properties[propertyName].ToStringArray();
-
-            private TestFixture ResolveFixture(ITest test) =>
-                test as TestFixture ?? ResolveFixture(test.Parent);
-        }
+        private TestFixture ResolveFixture(ITest test) =>
+            test as TestFixture ?? ResolveFixture(test.Parent);
     }
 }
