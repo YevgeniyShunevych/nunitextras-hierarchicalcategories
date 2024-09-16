@@ -5,9 +5,7 @@ namespace NUnitExtras.HierarchicalCategories.Tests
 {
     internal static class IEnumerableExtensions
     {
-        internal static string[] ToStringArray(this IEnumerable enumerable)
-        {
-            return enumerable.Cast<string>().ToArray();
-        }
+        internal static string[] ToStringArray(this IEnumerable enumerable) =>
+            enumerable.Cast<string>().ToArray();
     }
 }

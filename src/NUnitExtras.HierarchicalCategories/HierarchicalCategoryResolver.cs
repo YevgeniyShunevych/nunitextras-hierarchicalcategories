@@ -4,7 +4,7 @@ using System.Linq;
 namespace NUnit.Extras
 {
     /// <summary>
-    /// Contains functionality to extract hierarchical catregory names.
+    /// Contains functionality to extract hierarchical category names.
     /// </summary>
     public class HierarchicalCategoryResolver
     {
@@ -80,20 +80,16 @@ namespace NUnit.Extras
                 : name;
         }
 
-        private static bool IsHierarchicalCategoryAttribute(Type type)
-        {
-            return typeof(HierarchicalCategoryAttribute).IsAssignableFrom(type);
-        }
+        private static bool IsHierarchicalCategoryAttribute(Type type) =>
+            typeof(HierarchicalCategoryAttribute).IsAssignableFrom(type);
 
-        private string ResolveNameFromType(Type type)
-        {
-            return type.GetAttribute<HierarchicalCategoryNameAttribute>()?.Name
+        private string ResolveNameFromType(Type type) =>
+            type.GetAttribute<HierarchicalCategoryNameAttribute>()?.Name
                 ?? ResolveNameFromTypeName(type.Name);
-        }
 
         private string ResolveNameFromTypeName(string typeName)
         {
-            string name = typeName.EndsWith(nameof(Attribute))
+            string name = typeName.EndsWith(nameof(Attribute), StringComparison.Ordinal)
                 ? typeName.Substring(0, typeName.Length - nameof(Attribute).Length)
                 : typeName;
 

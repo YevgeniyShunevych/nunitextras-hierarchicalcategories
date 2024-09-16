@@ -8,16 +8,14 @@ namespace NUnit.Extras
     {
         internal static TAttribute GetAttribute<TAttribute>(this ICustomAttributeProvider provider, bool inherit = true)
             where TAttribute : Attribute
-        {
-            return provider.GetCustomAttributes(typeof(TAttribute), inherit).
+            =>
+            provider.GetCustomAttributes(typeof(TAttribute), inherit).
                 FirstOrDefault() as TAttribute;
-        }
 
         internal static bool TryGetAttribute<TAttribute>(this ICustomAttributeProvider provider, out TAttribute attribute)
             where TAttribute : Attribute
-        {
-            return provider.TryGetAttribute(true, out attribute);
-        }
+            =>
+            provider.TryGetAttribute(true, out attribute);
 
         internal static bool TryGetAttribute<TAttribute>(this ICustomAttributeProvider provider, bool inherit, out TAttribute attribute)
             where TAttribute : Attribute

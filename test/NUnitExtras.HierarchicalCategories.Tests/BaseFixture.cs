@@ -16,10 +16,8 @@ namespace NUnitExtras.HierarchicalCategories.Tests
             public string[] Categories =>
                 this[PropertyNames.Category];
 
-#pragma warning disable CA1822
             public string[] this[string propertyName] =>
                 TestContext.CurrentContext.Test.Properties[propertyName].ToStringArray();
-#pragma warning restore CA1822
         }
 
         public class FixturePropertiesAdapter
@@ -30,10 +28,8 @@ namespace NUnitExtras.HierarchicalCategories.Tests
             public string[] this[string propertyName] =>
                 ResolveFixture(TestExecutionContext.CurrentContext.CurrentTest).Properties[propertyName].ToStringArray();
 
-            private TestFixture ResolveFixture(ITest test)
-            {
-                return test as TestFixture ?? ResolveFixture(test.Parent);
-            }
+            private TestFixture ResolveFixture(ITest test) =>
+                test as TestFixture ?? ResolveFixture(test.Parent);
         }
     }
 }

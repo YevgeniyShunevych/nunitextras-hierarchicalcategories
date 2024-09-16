@@ -15,7 +15,7 @@ namespace NUnit.Extras
             if (char.IsLetterOrDigit(chars[0]))
                 wordChars.Add(chars[0]);
 
-            void endWord()
+            void EndWord()
             {
                 if (wordChars.Any())
                 {
@@ -32,14 +32,14 @@ namespace NUnit.Extras
 
                 if (!char.IsLetterOrDigit(current))
                 {
-                    endWord();
+                    EndWord();
                 }
                 else if ((char.IsDigit(current) && char.IsLetter(prev)) ||
                     (char.IsLetter(current) && char.IsDigit(prev)) ||
                     (char.IsUpper(current) && char.IsLower(prev)) ||
                     (char.IsUpper(current) && next != null && char.IsLower(next.Value)))
                 {
-                    endWord();
+                    EndWord();
                     wordChars.Add(current);
                 }
                 else
@@ -48,7 +48,7 @@ namespace NUnit.Extras
                 }
             }
 
-            endWord();
+            EndWord();
 
             return words.ToArray();
         }

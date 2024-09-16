@@ -9,15 +9,13 @@ namespace NUnitExtras.HierarchicalCategories.Tests
     public class MultipleAttributesAtFixtureTests : BaseFixture
     {
         [Test]
-        public void MultipleAttributesAtFixture_Test()
-        {
+        public void MultipleAttributesAtFixture_Test() =>
             FixtureProperties.Categories.Should().Equal(
                 "UI",
                 "UI.Authentication",
                 "UI.Authentication.Admin",
                 "UI.Products",
                 "UI.Products.Editing");
-        }
 
         [Test]
         [Module.Api.Authentication.Admin]
