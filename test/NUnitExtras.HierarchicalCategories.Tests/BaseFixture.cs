@@ -1,8 +1,4 @@
-﻿using NUnit.Framework;
-using NUnit.Framework.Interfaces;
-using NUnit.Framework.Internal;
-
-namespace NUnitExtras.HierarchicalCategories.Tests;
+﻿namespace NUnitExtras.HierarchicalCategories.Tests;
 
 [TestFixture]
 public abstract class BaseFixture

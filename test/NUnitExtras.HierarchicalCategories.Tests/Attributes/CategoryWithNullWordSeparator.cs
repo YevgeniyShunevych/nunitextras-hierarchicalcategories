@@ -1,6 +1,4 @@
-﻿using NUnit.Extras;
-
-namespace NUnitExtras.HierarchicalCategories.Tests;
+﻿namespace NUnitExtras.HierarchicalCategories.Tests;
 
 [HierarchicalCategorySettings(WordSeparator = null)]
 public class CategoryWithNullWordSeparator : HierarchicalCategoryAttribute

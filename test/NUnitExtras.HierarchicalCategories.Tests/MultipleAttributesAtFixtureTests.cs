@@ -1,8 +1,4 @@
-﻿using FluentAssertions;
-using NUnit.Framework;
-using NUnit.Framework.Internal;
-
-namespace NUnitExtras.HierarchicalCategories.Tests;
+﻿namespace NUnitExtras.HierarchicalCategories.Tests;
 
 [Module.UI.Authentication.Admin]
 [Module.UI.Products.Editing]

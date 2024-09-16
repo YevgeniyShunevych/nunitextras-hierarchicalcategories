@@ -1,6 +1,4 @@
-﻿using System.Collections;
-
-namespace NUnitExtras.HierarchicalCategories.Tests;
+﻿namespace NUnitExtras.HierarchicalCategories.Tests;
 
 internal static class IEnumerableExtensions
 {

@@ -1,7 +1,4 @@
-﻿using NUnit.Extras;
-using NUnit.Framework.Internal;
-
-namespace NUnitExtras.HierarchicalCategories.Tests;
+﻿namespace NUnitExtras.HierarchicalCategories.Tests;
 
 [HierarchicalCategorySettings(
     ApplyTopLevelToTestProperties = [TopLevelPropertyName],
