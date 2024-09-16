@@ -13,22 +13,22 @@ public abstract class BaseFixture
 
     public class TestPropertiesAdapter
     {
-        public string[] Categories =>
+        public IReadOnlyList<string> Categories =>
             this[PropertyNames.Category];
 
-        public string[] this[string propertyName] =>
+        public IReadOnlyList<string> this[string propertyName] =>
             TestContext.CurrentContext.Test.Properties[propertyName].ToStringArray();
     }
 
     public class FixturePropertiesAdapter
     {
-        public string[] Categories =>
+        public IReadOnlyList<string> Categories =>
             this[PropertyNames.Category];
 
-        public string[] this[string propertyName] =>
+        public IReadOnlyList<string> this[string propertyName] =>
             ResolveFixture(TestExecutionContext.CurrentContext.CurrentTest).Properties[propertyName].ToStringArray();
 
-        private TestFixture ResolveFixture(ITest test) =>
+        private static TestFixture ResolveFixture(ITest test) =>
             test as TestFixture ?? ResolveFixture(test.Parent);
     }
 }
