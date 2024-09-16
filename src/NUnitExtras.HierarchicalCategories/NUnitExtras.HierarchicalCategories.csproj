@@ -4,22 +4,15 @@
     <TargetFrameworks>net40;net45;netstandard2.0</TargetFrameworks>
     <RootNamespace>NUnit.Extras</RootNamespace>
     <Version>1.4.0</Version>
-    <Authors>Yevgeniy Shunevych</Authors>
-    <Company>Yevgeniy Shunevych</Company>
     <Product>NUnit Extras</Product>
     <Description>Hierarchical categories for NUnit.
 
 Supports .NET Framework 4.0+ and .NET Core/Standard 2.0+.
 
 NUnitExtras.HierarchicalCategories on GitHub: https://github.com/YevgeniyShunevych/nunitextras-hierarchicalcategories</Description>
-    <Copyright>© Yevgeniy Shunevych 2020</Copyright>
-    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/YevgeniyShunevych/nunitextras-hierarchicalcategories</PackageProjectUrl>
     <RepositoryUrl>https://github.com/YevgeniyShunevych/nunitextras-hierarchicalcategories</RepositoryUrl>
     <PackageTags>nunit testing test</PackageTags>
-    <RepositoryType>git</RepositoryType>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <CodeAnalysisRuleSet>..\NUnitExtras.ruleset</CodeAnalysisRuleSet>
     <PackageReleaseNotes>1.4.0 - https://github.com/YevgeniyShunevych/nunitextras-hierarchicalcategories/releases/tag/v1.4.0
 1.3.0 - https://github.com/YevgeniyShunevych/nunitextras-hierarchicalcategories/releases/tag/v1.3.0
 1.2.0 - https://github.com/YevgeniyShunevych/nunitextras-hierarchicalcategories/releases/tag/v1.2.0
@@ -28,18 +21,7 @@ NUnitExtras.HierarchicalCategories on GitHub: https://github.com/YevgeniyShunevy
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.2">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
     <PackageReference Include="NUnit" Version="3.7.0" />
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="7.8.0.7320">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="StyleCop.Analyzers" Version="1.0.2">
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
   </ItemGroup>
 
 </Project>
