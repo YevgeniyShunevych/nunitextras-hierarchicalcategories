@@ -1,115 +1,111 @@
-﻿using System;
-using System.Linq;
+﻿namespace NUnit.Extras;
 
-namespace NUnit.Extras
+/// <summary>
+/// Contains functionality to extract hierarchical category names.
+/// </summary>
+public class HierarchicalCategoryResolver
 {
     /// <summary>
-    /// Contains functionality to extract hierarchical category names.
+    /// The default category separator.
     /// </summary>
-    public class HierarchicalCategoryResolver
+    public const string DefaultCategorySeparator = ".";
+
+    /// <summary>
+    /// The default category word separator.
+    /// </summary>
+    public const string DefaultWordSeparator = " ";
+
+    /// <summary>
+    /// Gets or sets the category separator.
+    /// The default value is <c>"."</c>.
+    /// </summary>
+    public string CategorySeparator { get; set; } = DefaultCategorySeparator;
+
+    /// <summary>
+    /// Gets or sets the category word separator.
+    /// The default value is <c>" "</c>.
+    /// </summary>
+    public string WordSeparator { get; set; } = DefaultWordSeparator;
+
+    /// <summary>
+    /// Extracts the categories.
+    /// </summary>
+    /// <param name="hierarchicalCategoryName">Name of the hierarchical category.</param>
+    /// <returns>An array of categories.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="hierarchicalCategoryName"/> is <see langword="null"/>.</exception>
+    public string[] ExtractCategories(string hierarchicalCategoryName)
     {
-        /// <summary>
-        /// The default category separator.
-        /// </summary>
-        public const string DefaultCategorySeparator = ".";
+        if (hierarchicalCategoryName == null)
+            throw new ArgumentNullException(nameof(hierarchicalCategoryName));
 
-        /// <summary>
-        /// The default category word separator.
-        /// </summary>
-        public const string DefaultWordSeparator = " ";
+        string[] parts = hierarchicalCategoryName.Split(new[] { CategorySeparator }, StringSplitOptions.RemoveEmptyEntries).
+            Select(x => x.Trim()).
+            ToArray();
 
-        /// <summary>
-        /// Gets or sets the category separator.
-        /// The default value is <c>"."</c>.
-        /// </summary>
-        public string CategorySeparator { get; set; } = DefaultCategorySeparator;
+        return parts.Select((_, i) => string.Join(CategorySeparator, parts.Take(i + 1))).ToArray();
+    }
 
-        /// <summary>
-        /// Gets or sets the category word separator.
-        /// The default value is <c>" "</c>.
-        /// </summary>
-        public string WordSeparator { get; set; } = DefaultWordSeparator;
+    /// <summary>
+    /// Extracts the categories.
+    /// </summary>
+    /// <param name="type">The type inherited from <see cref="HierarchicalCategoryAttribute"/>.</param>
+    /// <returns>An array of categories.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="type"/> is <see langword="null"/>.</exception>
+    public string[] ExtractCategories(Type type)
+    {
+        if (type == null)
+            throw new ArgumentNullException(nameof(type));
 
-        /// <summary>
-        /// Extracts the categories.
-        /// </summary>
-        /// <param name="hierarchicalCategoryName">Name of the hierarchical category.</param>
-        /// <returns>An array of categories.</returns>
-        /// <exception cref="ArgumentNullException"><paramref name="hierarchicalCategoryName"/> is <see langword="null"/>.</exception>
-        public string[] ExtractCategories(string hierarchicalCategoryName)
-        {
-            if (hierarchicalCategoryName == null)
-                throw new ArgumentNullException(nameof(hierarchicalCategoryName));
+        if (!IsHierarchicalCategoryAttribute(type))
+            return [];
 
-            string[] parts = hierarchicalCategoryName.Split(new[] { CategorySeparator }, StringSplitOptions.RemoveEmptyEntries).
-                Select(x => x.Trim()).
-                ToArray();
+        string hierarchicalCategoryName = ExtractHierarchicalCategoryFromType(type);
+        return ExtractCategories(hierarchicalCategoryName);
+    }
 
-            return parts.Select((x, i) => string.Join(CategorySeparator, parts.Take(i + 1))).ToArray();
-        }
+    public string ExtractHierarchicalCategoryFromType(Type type)
+    {
+        string leadingCategory = null;
 
-        /// <summary>
-        /// Extracts the categories.
-        /// </summary>
-        /// <param name="type">The type inherited from <see cref="HierarchicalCategoryAttribute"/>.</param>
-        /// <returns>An array of categories.</returns>
-        /// <exception cref="ArgumentNullException"><paramref name="type"/> is <see langword="null"/>.</exception>
-        public string[] ExtractCategories(Type type)
-        {
-            if (type == null)
-                throw new ArgumentNullException(nameof(type));
+        if (type.DeclaringType != null && IsHierarchicalCategoryAttribute(type.DeclaringType))
+            leadingCategory = ExtractHierarchicalCategoryFromType(type.DeclaringType);
 
-            if (!IsHierarchicalCategoryAttribute(type))
-                return new string[0];
+        string name = ResolveNameFromType(type);
 
-            string hierarchicalCategoryName = ExtractHierarchicalCategoryFromType(type);
-            return ExtractCategories(hierarchicalCategoryName);
-        }
+        return leadingCategory != null
+            ? $"{leadingCategory}{CategorySeparator}{name}"
+            : name;
+    }
 
-        public string ExtractHierarchicalCategoryFromType(Type type)
-        {
-            string leadingCategory = null;
+    private static bool IsHierarchicalCategoryAttribute(Type type) =>
+        typeof(HierarchicalCategoryAttribute).IsAssignableFrom(type);
 
-            if (type.DeclaringType != null && IsHierarchicalCategoryAttribute(type.DeclaringType))
-                leadingCategory = ExtractHierarchicalCategoryFromType(type.DeclaringType);
+    private string ResolveNameFromType(Type type) =>
+        type.GetAttribute<HierarchicalCategoryNameAttribute>()?.Name
+            ?? ResolveNameFromTypeName(type.Name);
 
-            string name = ResolveNameFromType(type);
+    private string ResolveNameFromTypeName(string typeName)
+    {
+        string name = typeName.EndsWith(nameof(Attribute), StringComparison.Ordinal)
+            ? typeName.Substring(0, typeName.Length - nameof(Attribute).Length)
+            : typeName;
 
-            return leadingCategory != null
-                ? $"{leadingCategory}{CategorySeparator}{name}"
-                : name;
-        }
+        return string.Join(WordSeparator, name.SplitIntoWords());
+    }
 
-        private static bool IsHierarchicalCategoryAttribute(Type type) =>
-            typeof(HierarchicalCategoryAttribute).IsAssignableFrom(type);
-
-        private string ResolveNameFromType(Type type) =>
-            type.GetAttribute<HierarchicalCategoryNameAttribute>()?.Name
-                ?? ResolveNameFromTypeName(type.Name);
-
-        private string ResolveNameFromTypeName(string typeName)
-        {
-            string name = typeName.EndsWith(nameof(Attribute), StringComparison.Ordinal)
-                ? typeName.Substring(0, typeName.Length - nameof(Attribute).Length)
-                : typeName;
-
-            return string.Join(WordSeparator, name.SplitIntoWords());
-        }
-
-        /// <summary>
-        /// Extracts the hierarchical category settings.
-        /// Finds <see cref="HierarchicalCategorySettingsAttribute"/> in all ascendant types starting from <paramref name="type"/>.
-        /// </summary>
-        /// <param name="type">The type of an attribute.</param>
-        /// <returns>The found instance of <see cref="HierarchicalCategorySettingsAttribute"/> or default if not found.</returns>
-        public static HierarchicalCategorySettingsAttribute ExtractHierarchicalCategorySettings(Type type)
-        {
-            if (type.TryGetAttribute(out HierarchicalCategorySettingsAttribute settingsAttribute))
-                return settingsAttribute;
-            else if (type.DeclaringType != null)
-                return ExtractHierarchicalCategorySettings(type.DeclaringType);
-            else
-                return new HierarchicalCategorySettingsAttribute();
-        }
+    /// <summary>
+    /// Extracts the hierarchical category settings.
+    /// Finds <see cref="HierarchicalCategorySettingsAttribute"/> in all ascendant types starting from <paramref name="type"/>.
+    /// </summary>
+    /// <param name="type">The type of an attribute.</param>
+    /// <returns>The found instance of <see cref="HierarchicalCategorySettingsAttribute"/> or default if not found.</returns>
+    public static HierarchicalCategorySettingsAttribute ExtractHierarchicalCategorySettings(Type type)
+    {
+        if (type.TryGetAttribute(out HierarchicalCategorySettingsAttribute settingsAttribute))
+            return settingsAttribute;
+        else if (type.DeclaringType != null)
+            return ExtractHierarchicalCategorySettings(type.DeclaringType);
+        else
+            return new HierarchicalCategorySettingsAttribute();
     }
 }
