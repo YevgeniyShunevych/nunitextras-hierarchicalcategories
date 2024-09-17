@@ -19,13 +19,16 @@ public class HierarchicalCategorySettingsAttribute : Attribute
     public string WordSeparator { get; set; } = HierarchicalCategoryResolver.DefaultWordSeparator;
 
     /// <summary>
-    /// Gets or sets the names of the test properties to apply each hierarchical level (such as "lvl1", "lvl1.1" and "lvl1.1.1") to.
+    /// Gets or sets the names of the test properties to apply each hierarchical level to,
+    /// such as "lvl1", "lvl1.1" and "lvl1.1.1".
     /// By default contains <see cref="PropertyNames.Category"/> (<c>"Category"</c>).
+    /// Set the property to `[]` to disuse.
     /// </summary>
     public string[] ApplyEachLevelToTestProperties { get; set; } = [PropertyNames.Category];
 
     /// <summary>
-    /// Gets or sets the names of the test properties to apply only top hierarchical level (such as "lvl1.1.1") to.
+    /// Gets or sets the names of the test properties to apply only top hierarchical level to,
+    /// such as "lvl1.1.1", excluding "lvl1" and "lvl1.1".
     /// By default is empty.
     /// </summary>
     public string[] ApplyTopLevelToTestProperties { get; set; } = [];
