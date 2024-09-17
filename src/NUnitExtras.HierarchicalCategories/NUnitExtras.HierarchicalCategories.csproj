@@ -5,7 +5,7 @@
     <LangVersion>12.0</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>NUnit.Extras</RootNamespace>
-    <Version>1.4.0</Version>
+    <Version>2.0.0</Version>
     <Description>Hierarchical categories for NUnit.
 
 Supports .NET Framework 4.0+ and .NET Core/Standard 2.0+.
@@ -14,11 +14,7 @@ NUnitExtras.HierarchicalCategories on GitHub: https://github.com/YevgeniyShunevy
     <PackageProjectUrl>https://github.com/YevgeniyShunevych/nunitextras-hierarchicalcategories</PackageProjectUrl>
     <RepositoryUrl>https://github.com/YevgeniyShunevych/nunitextras-hierarchicalcategories</RepositoryUrl>
     <PackageTags>nunit testing test</PackageTags>
-    <PackageReleaseNotes>1.4.0 - https://github.com/YevgeniyShunevych/nunitextras-hierarchicalcategories/releases/tag/v1.4.0
-1.3.0 - https://github.com/YevgeniyShunevych/nunitextras-hierarchicalcategories/releases/tag/v1.3.0
-1.2.0 - https://github.com/YevgeniyShunevych/nunitextras-hierarchicalcategories/releases/tag/v1.2.0
-1.1.0 - https://github.com/YevgeniyShunevych/nunitextras-hierarchicalcategories/releases/tag/v1.1.0
-1.0.0 - Initial release</PackageReleaseNotes>
+    <PackageReleaseNotes>Changelog: https://github.com/YevgeniyShunevych/nunitextras-hierarchicalcategories/blob/main/CHANGELOG.md</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
