@@ -8,9 +8,9 @@
     <Version>2.0.0</Version>
     <Description>Hierarchical categories for NUnit.
 
-Supports .NET Framework 4.0+ and .NET Core/Standard 2.0+.
+Supports .NET 6.0+ and .NET Framework 4.6.2+.
 
-NUnitExtras.HierarchicalCategories on GitHub: https://github.com/YevgeniyShunevych/nunitextras-hierarchicalcategories</Description>
+The library docs are on GitHub: https://github.com/YevgeniyShunevych/nunitextras-hierarchicalcategories</Description>
     <PackageProjectUrl>https://github.com/YevgeniyShunevych/nunitextras-hierarchicalcategories</PackageProjectUrl>
     <RepositoryUrl>https://github.com/YevgeniyShunevych/nunitextras-hierarchicalcategories</RepositoryUrl>
     <PackageTags>nunit testing test</PackageTags>
