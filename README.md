@@ -35,38 +35,37 @@ public void SomeTest()
 
 ## Usage
 
-### Modules Definition Class
+### Modules definition class
 
 Define class which contains nested hierarchy of class attributes for modules:
 
 ```cs
 using NUnit.Extras;
 
-namespace NUnitExtras.HierarchicalCategories.Tests
+namespace NUnitExtras.HierarchicalCategories.Tests;
+
+public static class Feature
 {
-    public static class Feature
+    public class Analytics : HierarchicalCategoryAttribute
     {
-        public class Analytics : HierarchicalCategoryAttribute
+        public class AssistedReview : HierarchicalCategoryAttribute
         {
-            public class AssistedReview : HierarchicalCategoryAttribute
+        }
+
+        public class Infrastructure : HierarchicalCategoryAttribute
+        {
+            public class Agents : HierarchicalCategoryAttribute
             {
             }
 
-            public class Infrastructure : HierarchicalCategoryAttribute
+            public class Servers : HierarchicalCategoryAttribute
             {
-                public class Agents : HierarchicalCategoryAttribute
+                public class AnalyticsIndexing : HierarchicalCategoryAttribute
                 {
                 }
 
-                public class Servers : HierarchicalCategoryAttribute
+                public class StructuredData : HierarchicalCategoryAttribute
                 {
-                    public class AnalyticsIndexing : HierarchicalCategoryAttribute
-                    {
-                    }
-
-                    public class StructuredData : HierarchicalCategoryAttribute
-                    {
-                    }
                 }
             }
         }
@@ -75,10 +74,12 @@ namespace NUnitExtras.HierarchicalCategories.Tests
 ```
 
 All module attributes should inherit `HierarchicalCategoryAttribute`.
+Root class can be static without attributes.
+Typically name it with a category name, like `Feature`, `Module`, `Component`, etc.
 
-### Use in Tests
+### Use in tests
 
-Mark the tests with corresponding attributes:
+Mark tests with corresponding attributes:
 
 ```cs
 [Test]
@@ -113,18 +114,18 @@ public void Analytics_Infrastructure_Servers_AnalyticsIndexing_Test()
 }
 ```
 
-#### Tests Grouped by Outcome
+#### Tests grouped by outcome
 
 ![Tests Explorer - Grouped by Outcome](images/test-explorer-groupd-by-outcome.png)
 
-#### Tests Grouped by Traits
+#### Tests grouped by traits
 
 ![Tests Explorer - Grouped by Traits](images/test-explorer-groupd-by-traits.png)
 
-### Apply to Fixture
+### Apply to test class/fixture
 
 You can also apply attributes to fixtures.
-This will apply the category traites to all child tests.
+This will apply the category traits to all child tests.
 
 ```cs
 [TestFixture]
@@ -135,9 +136,9 @@ public class SomeTests
 }
 ```
 
-### Multiple Categories
+### Multiple categories
 
-It also possible to apply multiple hierarchical categories to tests, fixtures and assemblies.
+Also possible to apply multiple hierarchical categories to tests, fixtures and assemblies.
 
 ```cs
 [Test]
@@ -148,9 +149,10 @@ public void SomeTest()
 }
 ```
 
-### Special Naming
+### Special naming
 
-To set specific module name that contains special characters that are not allowed in class naming or for name override use `HierarchicalCategoryNameAttribute`:
+To set specific module name that contains special characters that are not allowed in class naming
+or for name override use `HierarchicalCategoryNameAttribute`:
 
 ```cs
 [HierarchicalCategoryName("Installation & Deployment")]
@@ -164,7 +166,7 @@ public class InstallationAndDeployment : HierarchicalCategoryAttribute
 Use `HierarchicalCategorySettingsAttribute` to change the default settings or attribute applying behavior.
 `HierarchicalCategorySettingsAttribute` provides ability to apply hierarchical categories not only as NUnit categories but also as custom NUnit properties.
 
-#### `HierarchicalCategorySettingsAttribute` Properties
+#### `HierarchicalCategorySettingsAttribute` properties
 
 ```cs
 public string CategorySeparator { get; set; }
@@ -186,16 +188,39 @@ ___
 public string[] ApplyEachLevelToTestProperties { get; set; }
 ```
 
-Gets or sets the names of the test properties to apply each hierarchical level (such as "lvl1", "lvl1.1" and "lvl1.1.1") to.
+Gets or sets the names of the test properties to apply each hierarchical level to,
+such as "lvl1", "lvl1.1" and "lvl1.1.1".
 By default contains `PropertyNames.Category` (`"Category"`).
+Set the property to `[]` to disuse.
 ___
 
 ```cs
 public string[] ApplyTopLevelToTestProperties { get; set; }
 ```
 
-Gets or sets the names of the test properties to apply only top hierarchical level (such as "lvl1.1.1") to.
+Gets or sets the names of the test properties to apply only top hierarchical level to,
+such as "lvl1.1.1", excluding "lvl1" and "lvl1.1".
 By default is empty.
+
+### Apply top level categories only
+
+Add `HierarchicalCategorySettingsAttribute` as below, if you need to apply only top levels,
+such as "lvl1.1.1", excluding intermediate "lvl1", "lvl1.1".
+
+```cs
+[HierarchicalCategorySettings(
+    ApplyTopLevelToTestProperties = ["Feature"], // For default category: [PropertyNames.Category]
+    ApplyEachLevelToTestProperties = [])]
+public static class Feature
+{
+    public class Analytics : HierarchicalCategoryAttribute
+    {
+        //...
+    }
+
+    //...
+}
+```
 
 ## Contact
 
